@@ -32,9 +32,9 @@ dnf -y install linux-firmware
 infecho "Installing recommended packages..."
 dnf -y install megi-kernel feedbackd phoc phosh squeekboard gnome-shell ModemManager rtl8723cs-firmware \
     f2fs-tools chatty calls carbons purple-mm-sms pinephone-helpers evolution-data-server \
-    f34-backgrounds-gnome kgx epiphany gnome-contacts evolution NetworkManager-wwan \
+    f34-backgrounds-gnome epiphany gnome-contacts evolution NetworkManager-wwan \
     firefox nautilus megapixels gnome-power-manager gnome-usage xdg-user-dirs pipewire-alsa alsa-ucm-utils \
-    pp-uboot
+    pp-uboot wlr-randr gnome-terminal
 
 infecho "Enabling graphical boot and Phosh..."
 systemctl disable initial-setup.service
