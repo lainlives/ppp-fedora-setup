@@ -34,7 +34,7 @@ dnf -y install megi-kernel feedbackd phoc phosh squeekboard gnome-shell ModemMan
     f2fs-tools chatty calls carbons purple-mm-sms pinephone-helpers evolution-data-server \
     f34-backgrounds-gnome epiphany gnome-contacts evolution NetworkManager-wwan \
     firefox nautilus megapixels gnome-power-manager gnome-usage xdg-user-dirs pipewire-alsa alsa-ucm-utils \
-    pp-uboot wlr-randr gnome-terminal
+    pp-uboot wlr-randr gnome-terminal gnome-clocks
 
 infecho "Enabling graphical boot and Phosh..."
 systemctl disable initial-setup.service
