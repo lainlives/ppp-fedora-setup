@@ -11,7 +11,7 @@ For prebuilt images, see the [releases](https://github.com/nikhiljha/pp-fedora-s
 
 - wget
 - xz
-- f2fs-tools (for mkfs.f2fs)
+- btrfs-progs (for mkfs.btrfs)
 - dosfstools (for mkfs.vfat)
 - rsync
 - uboot-tools (for mkimage)

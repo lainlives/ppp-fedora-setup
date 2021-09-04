@@ -6,4 +6,4 @@
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 LABEL=BOOT /boot vfat rw 0 1
-LABEL=ROOT / f2fs rw,relatime 0 0
+LABEL=ROOT / btrfs defaults,relatime 0 0

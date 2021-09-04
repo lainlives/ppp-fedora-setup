@@ -8,10 +8,10 @@ echo "Setting user Pine's XDG user directories..."
 sudo -u pine xdg-user-dirs-update
 
 echo "Disable automatic brightness..."
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+sudo -u pine gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 
 echo "Set Phoc's scale-to-fit active globally..."
-gsettings set sm.puri.phoc scale-to-fit true
+sudo -u pine gsettings set sm.puri.phoc scale-to-fit true
 
 echo "Remove temp-resolv.conf"
 rm /etc/tmp-resolv.conf

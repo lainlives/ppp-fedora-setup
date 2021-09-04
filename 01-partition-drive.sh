@@ -46,9 +46,9 @@ EOF
     partprobe -s /dev/loop1
 
     infecho "Beginning filesystem creation..."
-    infecho "If this fails, you might need to install mkfs.f2fs, which is usually called f2fs-tools."
+    infecho "If this fails, you might need to install mkfs.btrfs."
     mkfs.vfat -n BOOT $PP_PARTA
-    mkfs.f2fs -f -l ROOT $PP_PARTB
+    mkfs.btrfs -f -L ROOT $PP_PARTB
     infecho "Filesystems created!"
 fi
 

@@ -24,7 +24,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-command -v mkfs.f2fs >/dev/null 2>&1 || { echo >&2 "I require mkfs.f2fs but it's not installed.  Aborting."; exit 1; }
+command -v mkfs.btrfs >/dev/null 2>&1 || { echo >&2 "I require mkfs.btrfs but it's not installed.  Aborting."; exit 1; }
 command -v mkfs.vfat >/dev/null 2>&1 || { echo >&2 "I require mkfs.vfat but it's not installed.  Aborting."; exit 1; }
 
 if [[ $HOSTARCH -ne "aarch64" ]]; then
