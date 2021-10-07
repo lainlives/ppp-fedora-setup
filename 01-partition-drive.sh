@@ -41,9 +41,9 @@ unit: sectors
 EOF
     infecho "Image partitioned!"
 
-    infecho "Mounting the image to loop1..."
-    losetup /dev/loop1 fedora.img
-    partprobe -s /dev/loop1
+    infecho "Mounting the image to ${PP_IMAGE}..."
+    losetup "${PP_IMAGE}" fedora.img
+    partprobe -s "${PP_IMAGE}"
 
     infecho "Beginning filesystem creation..."
     infecho "If this fails, you might need to install mkfs.btrfs."
