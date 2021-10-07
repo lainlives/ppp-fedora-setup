@@ -43,7 +43,7 @@ then
     mkdir -p rootfs/boot
     mount $PP_PARTA rootfs/boot
 
-    if [[ $HOSTARCH -ne "aarch64" ]]; then
+    if [[ $HOSTARCH != "aarch64" ]]; then
         infecho "Installing qemu in rootfs..."
         cp /usr/bin/qemu-aarch64-static rootfs/usr/bin
     fi
@@ -57,7 +57,7 @@ then
     infecho "Copy resolv.conf /etc/tmp-resolv.conf"
     cp /etc/resolv.conf rootfs/etc/tmp-resolv.conf
 
-    if [[ $HOSTARCH -ne "aarch64" ]]; then
+    if [[ $HOSTARCH != "aarch64" ]]; then
         infecho "Chrooting with qemu into rootfs..."
         chroot rootfs qemu-aarch64-static /bin/bash /root/all.sh
 
