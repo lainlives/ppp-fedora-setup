@@ -33,7 +33,7 @@ infecho "Installing recommended packages..."
 dnf -y install megi-kernel feedbackd phoc phosh squeekboard gnome-shell ModemManager rtl8723cs-firmware \
     dbus-x11 chatty calls carbons purple-mm-sms pinephone-helpers evolution-data-server \
     f35-backgrounds-gnome epiphany gnome-contacts NetworkManager-wwan \
-    firefox nautilus megapixels gnome-power-manager gnome-usage xdg-user-dirs pipewire-alsa \
+    firefox nautilus gvfs-goa megapixels gnome-power-manager gnome-usage xdg-user-dirs pipewire-alsa \
     pipewire-pulseaudio alsa-ucm \
     pp-uboot wlr-randr gnome-terminal gnome-clocks wireplumber
 
