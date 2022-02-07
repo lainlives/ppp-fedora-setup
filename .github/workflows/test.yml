@@ -23,7 +23,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
       - name: Makes extra disk space
-        uses: greg-hellings/make-space@v1
+        uses: nikhiljha/make-space@v1
       - name: Install necessary tools
         run: |
           sudo apt update
@@ -57,7 +57,7 @@ jobs:
         with:
           name: image
       - name: Upload files to release
-        uses: ncipollo/release-action@v1
+        uses: nikhiljha/release-action@v1
         with:
           artifacts: fedora.img.xz
           allowUpdates: true
