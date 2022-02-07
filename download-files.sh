@@ -6,7 +6,11 @@ source .env
 echo "This script will download a few GB of Fedora and a few MB of Kernel into the current directory."
 echo "Look inside the script if you would rather download manually."
 echo
-read -p "Continue? [y/N] " -n 1 -r
+if [ ! -z "$PS1" ]; then
+    read -p "Continue? [y/N] " -n 1 -r
+else
+    REPLY=y
+fi
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then

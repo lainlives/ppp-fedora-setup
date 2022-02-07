@@ -9,8 +9,13 @@ echo "========================"
 
 # Approximately 6GB image.
 echo "Create image called $OUT_NAME? Make sure this doesn't exist, or it will be replaced."
-read -p "Continue? [y/N] " -n 1 -r
+if [ ! -z "$PS1" ]; then
+    read -p "Continue? [y/N] " -n 1 -r
+else
+    REPLY=y
+fi
 echo
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     if [[ -e "$OUT_NAME" ]]

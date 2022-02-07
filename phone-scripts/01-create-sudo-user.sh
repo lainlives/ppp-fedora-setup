@@ -13,6 +13,6 @@ infecho () {
 infecho "Adding user \"pine\"..."
 
 adduser pine
-passwd pine
+printf 123456 | passwd --stdin pine
 groupadd feedbackd
 usermod -aG wheel,video,feedbackd pine

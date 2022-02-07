@@ -1,0 +1,65 @@
+name: Run build
+
+"on":
+  push:
+    paths-ignored:
+      - README.md
+      - COPYING
+  pull_request:
+  release:
+    types:
+      - published
+      - prereleased
+  workflow_dispatch:  # Allows manually triggering
+
+env:
+  PP_IMAGE: /dev/loop10
+  FED_IMAGE: /dev/loop11
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Makes extra disk space
+        uses: greg-hellings/make-space@v1
+      - name: Install necessary tools
+        run: |
+          sudo apt update
+          sudo apt install -yy systemd-container qemu-user-static u-boot-tools btrfs-progs dosfstools xz-utils sssd
+          sudo service sssd start
+      - name: Download files
+        run: |
+          set -ex -o pipefail
+          ./download-files.sh
+      - name: Execute build
+        run: |
+          set -ex -o pipefail
+          sudo -E ./all.sh
+          # Compress image
+          sudo xz -T 0 fedora.img
+      - name: Store fedora.img.xz as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: image
+          path: fedora.img.xz
+          if-no-files-found: error
+
+  release:
+    needs:
+      - build  # Can only run after the build has created the artifact
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Download fedora.img.xz
+        uses: actions/download-artifact@v2
+        with:
+          name: image
+      - name: Upload files to release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: fedora.img.xz
+          allowUpdates: true
+          name: ${{ github.event.name }}
+          token: ${{ secrets.GITHUB_TOKEN }}

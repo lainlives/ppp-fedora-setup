@@ -31,7 +31,11 @@ infecho "I didn't test this so it might also cause WWIII or something."
 infecho "I'm not responsible for anything that happens, you should read the script first."
 echo "=== WARNING WARNING WARNING ==="
 echo
-read -p "Continue? [y/N] " -n 1 -r
+if [ ! -z "$PS1" ]; then
+    read -p "Continue? [y/N] " -n 1 -r
+else
+    REPLY=y
+fi
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -50,30 +54,26 @@ then
 
     cp phone-scripts/* rootfs/root
 
-    infecho "Mounting your /dev into the rootfs..."
-    infecho "This is neccesary for dnf to work, because reasons."
-    mount --bind /dev rootfs/dev
-    
     infecho "Copy resolv.conf /etc/tmp-resolv.conf"
     cp /etc/resolv.conf rootfs/etc/tmp-resolv.conf
 
     if [[ $HOSTARCH != "aarch64" ]]; then
         infecho "Chrooting with qemu into rootfs..."
-        chroot rootfs qemu-aarch64-static /bin/bash /root/all.sh
+        systemd-nspawn -D rootfs qemu-aarch64-static /bin/bash /root/all.sh
 
         infecho "KILLING ALL QEMU PROCESSES, MAKE SURE YOU HAVE NO MORE RUNNING!"
-        killall -9 /usr/bin/qemu-aarch64-static
+        killall -9 /usr/bin/qemu-aarch64-static || true
+
+        infecho "Removing qemu binary, so it doesn't stay in image"
+        rm -f rootfs/usr/bin/qemu-aarch64-static
     else
         infecho "Chrooting into rootfs..."
         chroot rootfs /bin/bash /root/all.sh
     fi
 
-    infecho "Unmounting your /dev from the rootfs..."
-    sleep 3
-    umount rootfs/dev
-
     infecho "Unmounting rootfs..."
     sleep 3
+    umount $PP_PARTA
     umount $PP_PARTB
     rmdir rootfs
 fi

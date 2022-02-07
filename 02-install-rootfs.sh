@@ -24,11 +24,15 @@ fi
 
 # Warning
 echo "=== WARNING WARNING WARNING ==="
-infecho "This script will try to mount to /dev/loop0."
+infecho "This script will try to mount to ${FED_IMAGE}."
 infecho "Make sure nothing else is there with: lsblk"
 echo "=== WARNING WARNING WARNING ==="
 echo
-read -p "Continue? [y/N] " -n 1 -r
+if [ ! -z "$PS1" ]; then
+    read -p "Continue? [y/N] " -n 1 -r
+else
+    REPLY=y
+fi
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -37,9 +41,9 @@ then
     mkdir -p rootfs
 
     infecho "Mounting Fedora image..."
-    losetup /dev/loop0 rawhide.raw
-    partprobe -s /dev/loop0
-    mount /dev/loop0p3 imgfs
+    losetup "${FED_IMAGE}" rawhide.raw
+    partprobe -s ${FED_IMAGE}
+    mount ${FED_IMAGE}p3 imgfs
 
     infecho "Mounting SD Card rootfs..."
     partprobe -s $PP_IMAGE
@@ -47,14 +51,18 @@ then
     mount $PP_PARTB rootfs
 
     infecho "Copying files..."
-    rsync -a --progress imgfs/* rootfs/
+    if [ ! -z "$PS1" ]; then
+        rsync -a --progress imgfs/* rootfs/
+    else
+        rsync -a imgfs/* rootfs/
+    fi
 
     infecho "Deleting contents of /boot..."
     rm -rf rootfs/boot/*
 
     infecho "Unmounting everything..."
-    umount /dev/loop0p3
-    losetup -d /dev/loop0
+    umount ${FED_IMAGE}p3
+    losetup -d ${FED_IMAGE}
     umount $PP_PARTB
 
     infecho "Deleting temp directories..."
