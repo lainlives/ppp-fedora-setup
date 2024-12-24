@@ -107,6 +107,6 @@ then
     umount $PP_PARTB
     rmdir rootfs
 fi
-infecho "COMPLETE! Flashable image is at: $PWD/fedora.img"
+infecho "Build Complete! Flashable image is at: $PWD/fedora.img"
 
 exit 0

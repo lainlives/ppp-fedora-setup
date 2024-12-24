@@ -24,7 +24,7 @@ ln -sfv /etc/tmp-resolv.conf /etc/resolv.conf
 
 infecho "Removing old kernel..."
 {
-dnf -q -y remove kernel || rpm -e --noscripts kerne-core
+dnf -q -y remove kernel || rpm -e --noscripts kernel-core
 } >/dev/null 2>&1
 
 infecho "Setting dnf to 20 consecutive downloads..."
@@ -102,7 +102,7 @@ echo 'metadata_expire=7d'
 
 infecho "Removing kernel again..."
 {
-dnf -q -y remove kernel || rpm -e --noscripts kerne-core
+dnf -q -y remove kernel || rpm -e --noscripts kernel-core
 } >/dev/null 2>&1
 
 infecho "Enabling graphical boot..."
