@@ -1,11 +1,4 @@
-# <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Fedora_logo.svg/200px-Fedora_logo.svg.png" width="25" height="25"> PinePhone Fedora Setup
-
-A collection of scripts that correctly sets up Fedora to run off your PinePhone SD card. Soon to be part of the Fedora Mobility SIG.
-
-## **🚨🚨🚨 WARNING! 🚨🚨🚨** 
-This is a **barely tested** collection of scripts written by someone who has never written a bash script for other people to use! It involves the **dd** command and **sudo**. This is **VERY DANGEROUS** - please do not run it unless you have read and fully understood what it will do. Better yet, read the scripts to learn how to install the image manually.
-
-For prebuilt images, see the [releases](https://github.com/nikhiljha/pp-fedora-sdsetup/releases) page. All images after Nov 2020 were built by @Torbuntu.
+These scripts generate a 10gb fedora rawhide image with far too many plasma-desktop and plasma-mobile packages.
 
 ## Dependencies
 

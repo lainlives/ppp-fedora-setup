@@ -51,16 +51,14 @@ then
     mount $PP_PARTB rootfs
 
     infecho "Copying files..."
-    if [ ! -z "$PS1" ]; then
-        rsync -a --progress imgfs/* rootfs/
-    else
-        rsync -a imgfs/* rootfs/
-    fi
+    rsync -a  imgfs/* rootfs/
+   
 
     infecho "Deleting contents of /boot..."
     rm -rf rootfs/boot/*
-
+    
     infecho "Unmounting everything..."
+    sync
     umount ${FED_IMAGE}p3
     losetup -d ${FED_IMAGE}
     umount $PP_PARTB

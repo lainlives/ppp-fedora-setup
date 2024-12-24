@@ -40,8 +40,8 @@ then
 label: dos
 unit: sectors
 
-4MiB,252MiB,
-256MiB,,
+11MiB,1512MiB,
+1517MiB,,
 EOF
     infecho "Image partitioned!"
 

@@ -15,14 +15,15 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     # Download kernel
-    wget https://xff.cz/kernels/5.16/pp.tar.gz -O pp.tar.gz
-    tar xf pp.tar.gz
+#    wget https://xff.cz/kernels/6.12/ppp.tar.gz -O ppp.tar.gz
+#    tar xf ppp.tar.gz
 
     # Get latest rawhide from repo when not set in .env
     if [ -z "$FEDORA_RAW_FILE" ]
     then
         echo "Searching for latest Fedora Rawhide..."
         FEDORA_RAW_VER=$(wget -q $FEDORA_RAW_SOURCE -O - | grep -Po '(?<=Fedora-Minimal-Rawhide-).*?(?=.aarch64)' | head -n 1)
+        
         if [ ! -z "$FEDORA_RAW_VER" ]
         then
             echo "Downloading latest Fedora version: $FEDORA_RAW_VER"
