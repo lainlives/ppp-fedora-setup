@@ -1,4 +1,4 @@
-These scripts generate a 10gb fedora rawhide image with far too many plasma-desktop and plasma-mobile packages.
+These scripts generate a 10gb fedora rawhide image for the pinephonepro with far too many plasma-desktop and plasma-mobile packages.
 
 ## Dependencies
 
